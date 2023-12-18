@@ -1,35 +1,37 @@
-import logging
 import os
-import re
-from flask import Flask, request
-from datetime import date
-import telegram
 import telebot
 from telebot import types
-import goslate
+import emoji
+from flask import Flask, Blueprint, make_response, request, render_template
+from flask_restful import Api, Resource
+from pymongo import MongoClient
+import random
+import requests
+from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-from models import User
+DEBUG = True
 
-user = User
-LANGUAGE = user.language
+# Configuration variable
+TOKEN = os.getenv("TOKEN")
 
-# # Language setup
-# os.environ["LANGUAGE"] = "en"
-# LANGUAGE = os.getenv("LANGUAGE")
-translator = goslate.Goslate()
+WEBHOOK_MODE = os.getenv("WEBHOOK_MODE")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_NAME = os.getenv("DATABASE_NAME")
+
+bot = telebot.TeleBot(TOKEN, threaded=True)
+
+# Initialize application
+app = Flask(__name__)
+
+client = MongoClient(DATABASE_URL)
+db = client[DATABASE_NAME]
 
 # Logging Setup
 logging.basicConfig(
     format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
     level=logging.WARNING
 )
-
-TOKEN = os.getenv('TOKEN')
-
-DEBUG = True
-SERVER_URL = os.getenv("SERVER_URL")
-
-bot = telebot.TeleBot(TOKEN)
-app = Flask(__name__)
