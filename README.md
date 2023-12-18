@@ -35,8 +35,8 @@ Before you begin, ensure you have the following installed:
     ```
 
 3. **Configuration:**
-    - Rename `config.example.yaml` to `config.yaml`.
-    - Add your Telegram bot token to the `config.yaml` file.
+    - Rename `.env.example` to `.env`.
+    - Add your Telegram bot token to the `.env` file.
 
 4. **Run the Bot:**
     ```bash
@@ -47,8 +47,7 @@ Before you begin, ensure you have the following installed:
 ## Bot Structure
 
 - `main.py`: Entry point for the bot.
-- `bot/`: Directory containing bot modules and functionality.
-- `config.yaml`: Configuration file for the bot.
+- `.env`: Configuration file for the bot.
 - `requirements.txt` (or equivalent): List of dependencies.
 
 ## Docker Deployment
@@ -102,5 +101,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-For inquiries, issues, or support, please contact [Your Name] at [your.email@example.com].
+For inquiries, issues, or support, please contact @codefred on Telegram.
 
